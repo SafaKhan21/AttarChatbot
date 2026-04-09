@@ -1,0 +1,80 @@
+<!-- templates/chatbot.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Response</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        .message-box {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            position: relative;
+        }
+
+        .user-icon img {
+            width: 64px;
+            display: block;
+            margin: 0 auto 10px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .back-icon {
+            margin-top: 20px;
+        }
+
+        .back-button {
+            padding: 10px 20px;
+            background-color: #1c28b3;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #1c28b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message-box">
+            <div class="user-icon">
+                <img src="/static/profile-user.png" alt="User">
+            </div>
+            <h1>{{ message }}</h1>
+            <div class="back-icon">
+                <a href="/home" class="back-button">Back to Chat Page</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

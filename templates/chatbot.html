@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عطار | خدمة العملاء</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --g-deep:   #082c20;
+  --g-dark:   #0a3d2e;
+  --g-mid:    #0f6e56;
+  --g-soft:   #1d9e75;
+  --g-pale:   #e1f5ee;
+  --g-mint:   #9fe1cb;
+  --gold:     #c9a84c;
+  --gold-bg:  #fdf8ec;
+  --bg:       #f4f7f5;
+  --surface:  #ffffff;
+  --border:   #d6e8df;
+  --t-main:   #0d2b22;
+  --t-mid:    #3d6b5a;
+  --t-soft:   #87b09a;
+  --radius:   20px;
+  --font:     'Cairo', sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background-image:
+    radial-gradient(ellipse at 15% 15%, rgba(29,158,117,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 85%, rgba(201,168,76,0.06) 0%, transparent 55%);
+}
+
+/* ── Shell ── */
+.shell {
+  width: 100%;
+  max-width: 500px;
+  height: 90vh;
+  max-height: 820px;
+  background: var(--surface);
+  border-radius: 28px;
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 60px rgba(10,61,46,0.13);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.hdr {
+  background: var(--g-dark);
+  padding: 18px 20px 16px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.hdr::before {
+  content: '';
+  position: absolute;
+  top: -40px; left: -40px;
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  background: rgba(29,158,117,0.12);
+  pointer-events: none;
+}
+.hdr-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+.hdr-logo {
+  width: 44px; height: 44px;
+  border-radius: 13px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+  letter-spacing: -0.5px;
+}
+.hdr-text { flex: 1; min-width: 0; }
+.hdr-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.2;
+}
+.hdr-sub {
+  font-size: 11px;
+  color: var(--g-mint);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hdr-right { display: flex; align-items: center; gap: 8px; }
+.online-pill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  padding: 4px 10px;
+}
+.online-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #5DCAA5;
+  animation: blink 2s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.4} }
+.online-txt { font-size: 11px; color: var(--g-mint); font-weight: 500; }
+
+.reset-btn {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 5px 9px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  font-family: var(--font);
+  transition: background 0.15s;
+}
+.reset-btn:hover { background: rgba(255,255,255,0.18); color: #fff; }
+
+/* ── Messages ── */
+.msgs {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px 16px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scroll-behavior: smooth;
+}
+.msgs::-webkit-scrollbar { width: 3px; }
+.msgs::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* Welcome */
+.welcome {
+  background: linear-gradient(135deg, var(--g-pale) 0%, #f0faf6 100%);
+  border: 1px solid var(--g-mint);
+  border-radius: 18px;
+  padding: 18px 16px;
+  text-align: center;
+}
+.welcome-logo {
+  width: 52px; height: 52px;
+  border-radius: 16px;
+  background: var(--g-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  margin: 0 auto 12px;
+}
+.welcome h2 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--g-dark);
+  margin-bottom: 5px;
+}
+.welcome p {
+  font-size: 12.5px;
+  color: var(--t-mid);
+  line-height: 1.65;
+}
+.qr-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 13px;
+  justify-content: center;
+}
+.qr {
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(15,110,86,0.3);
+  background: white;
+  color: var(--g-mid);
+  cursor: pointer;
+  font-family: var(--font);
+  transition: all 0.15s;
+}
+.qr:hover {
+  background: var(--g-mid);
+  color: white;
+  border-color: var(--g-mid);
+}
+
+/* Bubbles */
+.row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  animation: rise .22s ease;
+}
+@keyframes rise { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:translateY(0)} }
+.row.user { flex-direction: row-reverse; }
+
+.av {
+  width: 30px; height: 30px;
+  border-radius: 9px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+}
+.row.bot .av  { background: var(--g-mid); color: white; }
+.row.user .av { background: var(--g-pale); color: var(--g-dark); border: 1px solid var(--border); }
+
+.bub-wrap { display: flex; flex-direction: column; gap: 3px; max-width: calc(100% - 80px); }
+.row.user .bub-wrap { align-items: flex-end; }
+
+.bub {
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  word-break: break-word;
+}
+.row.bot .bub {
+  background: var(--surface);
+  color: var(--t-main);
+  border: 1px solid var(--border);
+  border-bottom-right-radius: 5px;
+  box-shadow: 0 1px 3px rgba(10,61,46,0.05);
+}
+.row.user .bub {
+  background: var(--g-mid);
+  color: white;
+  border-bottom-left-radius: 5px;
+  text-align: right;
+  direction: rtl;
+}
+.ts { font-size: 10px; color: var(--t-soft); padding: 0 2px; }
+
+/* Typing */
+.typing-bub {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 16px;
+}
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--g-soft);
+  animation: bounce 1.1s infinite;
+}
+.dot:nth-child(2){ animation-delay:.18s }
+.dot:nth-child(3){ animation-delay:.36s }
+@keyframes bounce {
+  0%,60%,100%{ transform:translateY(0) }
+  30%{ transform:translateY(-5px) }
+}
+
+/* ── Suggestions strip (post-welcome) ── */
+.suggestions {
+  padding: 0 16px 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.sug {
+  font-size: 11.5px;
+  padding: 5px 11px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--t-mid);
+  cursor: pointer;
+  font-family: var(--font);
+  transition: all .15s;
+  white-space: nowrap;
+}
+.sug:hover { background: var(--g-pale); border-color: var(--g-soft); color: var(--g-dark); }
+
+/* ── Input ── */
+.input-area {
+  padding: 12px 16px 14px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  flex-shrink: 0;
+}
+.input-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 8px 8px 8px 14px;
+  transition: border-color .15s;
+}
+.input-row:focus-within {
+  border-color: var(--g-soft);
+  background: white;
+}
+textarea#msg {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: var(--font);
+  font-size: 13.5px;
+  color: var(--t-main);
+  outline: none;
+  resize: none;
+  min-height: 22px;
+  max-height: 90px;
+  line-height: 1.55;
+  direction: auto;
+  padding: 0;
+}
+textarea#msg::placeholder { color: var(--t-soft); }
+
+.send {
+  width: 38px; height: 38px;
+  border-radius: 11px;
+  border: none;
+  background: var(--g-mid);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background .15s, transform .1s;
+}
+.send:hover:not(:disabled) { background: var(--g-dark); }
+.send:active:not(:disabled) { transform: scale(.95); }
+.send:disabled { background: var(--border); cursor: not-allowed; }
+.send svg { width: 17px; height: 17px; }
+
+.foot {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.foot a {
+  font-size: 10.5px;
+  color: var(--t-soft);
+  text-decoration: none;
+  transition: color .15s;
+}
+.foot a:hover { color: var(--g-mid); }
+.foot-sep { font-size: 10.5px; color: var(--border); }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- Header -->
+  <div class="hdr">
+    <div class="hdr-inner">
+      <div class="hdr-logo">عط</div>
+      <div class="hdr-text">
+        <div class="hdr-name">عطار لهندسة البرامج</div>
+        <div class="hdr-sub">Attar Software Engineering — خدمة العملاء</div>
+      </div>
+      <div class="hdr-right">
+        <div class="online-pill">
+          <div class="online-dot"></div>
+          <span class="online-txt">متصل</span>
+        </div>
+        <button class="reset-btn" onclick="resetChat()" title="بدء محادثة جديدة">↺ جديد</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Messages -->
+  <div class="msgs" id="msgs">
+    <div class="welcome">
+      <div class="welcome-logo">عط</div>
+      <h2>أهلاً بك في خدمة عملاء عطار</h2>
+      <p>
+        يسعدنا مساعدتك في كل ما يخص أنظمتنا وخدماتنا.<br>
+        <span style="color:var(--t-soft);font-size:11.5px">Welcome! Ask us anything about Attar.</span>
+      </p>
+      <div class="qr-grid">
+        <button class="qr" onclick="ask('ما هي الأنظمة المتاحة؟')">الأنظمة المتاحة</button>
+        <button class="qr" onclick="ask('ما خدمات الشركة؟')">خدماتنا</button>
+        <button class="qr" onclick="ask('هل تدعمون فاتورة ZATCA؟')">فاتورة إلكترونية</button>
+        <button class="qr" onclick="ask('كيف أطلب عرض سعر؟')">طلب عرض سعر</button>
+        <button class="qr" onclick="ask('ما القطاعات التي تخدمونها؟')">القطاعات</button>
+        <button class="qr" onclick="ask('What services do you offer?')">Services</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Suggestion strip (shown after first message) -->
+  <div class="suggestions" id="sugs" style="display:none">
+    <button class="sug" onclick="ask('كيف أتواصل مع الدعم الفني؟')">دعم فني</button>
+    <button class="sug" onclick="ask('ما هو نظام POS؟')">نظام POS</button>
+    <button class="sug" onclick="ask('هل يعمل النظام مع أوراكل؟')">أوراكل</button>
+    <button class="sug" onclick="ask('أعمالكم السابقة')">أعمال سابقة</button>
+  </div>
+
+  <!-- Input -->
+  <div class="input-area">
+    <div class="input-row">
+      <textarea id="msg" rows="1"
+        placeholder="اكتب سؤالك... / Ask a question..."
+        onkeydown="handleKey(event)"
+        oninput="grow(this)"
+      ></textarea>
+      <button class="send" id="sendbtn" onclick="send()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2" fill="currentColor" stroke="none"></polygon>
+        </svg>
+      </button>
+    </div>
+    <div class="foot">
+      <a href="https://www.attarse.com/contact" target="_blank">طلب عرض سعر</a>
+      <span class="foot-sep">·</span>
+      <a href="http://attarse.com/help/?lang=ar" target="_blank">دعم فني</a>
+      <span class="foot-sep">·</span>
+      <a href="tel:0507363550">0507363550</a>
+      <span class="foot-sep">·</span>
+      <a href="https://www.attarse.com/faqs/" target="_blank">أسئلة شائعة</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const msgsEl   = document.getElementById('msgs');
+const inputEl  = document.getElementById('msg');
+const sendBtn  = document.getElementById('sendbtn');
+const sugsEl   = document.getElementById('sugs');
+let busy = false;
+let firstMsg = true;
+
+function ts() {
+  return new Date().toLocaleTimeString('ar-SA', {hour:'2-digit', minute:'2-digit'});
+}
+
+function grow(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 90) + 'px';
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
+}
+
+function addBubble(role, text) {
+  const row  = document.createElement('div');
+  row.className = `row ${role}`;
+
+  const av = document.createElement('div');
+  av.className = 'av';
+  av.textContent = role === 'bot' ? 'عط' : 'أنت';
+
+  const wrap = document.createElement('div');
+  wrap.className = 'bub-wrap';
+
+  const bub = document.createElement('div');
+  bub.className = 'bub';
+  bub.innerHTML = text.replace(/\n/g, '<br>');
+
+  const time = document.createElement('div');
+  time.className = 'ts';
+  time.textContent = ts();
+
+  wrap.appendChild(bub);
+  wrap.appendChild(time);
+  row.appendChild(av);
+  row.appendChild(wrap);
+  msgsEl.appendChild(row);
+  msgsEl.scrollTop = msgsEl.scrollHeight;
+}
+
+function showTyping() {
+  const row = document.createElement('div');
+  row.className = 'row bot';
+  row.id = 'typing';
+  row.innerHTML = `
+    <div class="av">عط</div>
+    <div class="bub bot typing-bub">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>`;
+  msgsEl.appendChild(row);
+  msgsEl.scrollTop = msgsEl.scrollHeight;
+}
+
+function hideTyping() {
+  const el = document.getElementById('typing');
+  if (el) el.remove();
+}
+
+function ask(q) {
+  inputEl.value = q;
+  send();
+}
+
+async function send() {
+  if (busy) return;
+  const text = inputEl.value.trim();
+  if (!text) return;
+
+  inputEl.value = '';
+  inputEl.style.height = 'auto';
+  busy = true;
+  sendBtn.disabled = true;
+
+  if (firstMsg) {
+    sugsEl.style.display = 'flex';
+    firstMsg = false;
+  }
+
+  addBubble('user', text);
+  showTyping();
+
+  try {
+    const res = await fetch('/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ msg: text })
+    });
+    const data = await res.json();
+    hideTyping();
+    addBubble('bot', data.response || 'لا يوجد رد.');
+  } catch (e) {
+    hideTyping();
+    addBubble('bot', 'فشل الاتصال بالخادم. يرجى التحقق من الإنترنت والمحاولة مرة أخرى.');
+  }
+
+  busy = false;
+  sendBtn.disabled = false;
+  inputEl.focus();
+}
+
+async function resetChat() {
+  try {
+    await fetch('/reset', { method: 'POST' });
+  } catch(_) {}
+  msgsEl.innerHTML = '';
+  firstMsg = true;
+  sugsEl.style.display = 'none';
+  // Re-add welcome card
+  msgsEl.innerHTML = `
+    <div class="welcome">
+      <div class="welcome-logo">عط</div>
+      <h2>أهلاً بك في خدمة عملاء عطار</h2>
+      <p>يسعدنا مساعدتك في كل ما يخص أنظمتنا وخدماتنا.<br>
+        <span style="color:var(--t-soft);font-size:11.5px">Welcome! Ask us anything about Attar.</span></p>
+      <div class="qr-grid">
+        <button class="qr" onclick="ask('ما هي الأنظمة المتاحة؟')">الأنظمة المتاحة</button>
+        <button class="qr" onclick="ask('ما خدمات الشركة؟')">خدماتنا</button>
+        <button class="qr" onclick="ask('هل تدعمون فاتورة ZATCA؟')">فاتورة إلكترونية</button>
+        <button class="qr" onclick="ask('كيف أطلب عرض سعر؟')">طلب عرض سعر</button>
+        <button class="qr" onclick="ask('ما القطاعات التي تخدمونها؟')">القطاعات</button>
+        <button class="qr" onclick="ask('What services do you offer?')">Services</button>
+      </div>
+    </div>`;
+}
+</script>
+</body>
+</html>

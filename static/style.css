@@ -1,0 +1,1489 @@
+/* General Styles */
+body, html {
+    background: rgb(255, 255, 255);
+    overflow: hidden; /* Prevent horizontal scroll */
+    background-image: url('../images/back.png');
+    background-size: cover; /* Adjust the background image to cover the entire page */
+    background-repeat: repeat-y; /* Prevent repeating of background image */
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    background-attachment: fixed; /* Make the background image fixed */
+}
+
+.top-bar {
+    background-color: #5BDB84;
+    color: white;
+    padding: 0px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between; /* Space between items */
+    align-items: center;
+}
+
+.headerName {
+    text-align: left;
+    color: #0F0FEC;
+    flex: 1;
+}
+
+.user-account {
+    color: #1c28b3; /* Updated color */
+    display: flex;
+    align-items: center; /* Align icon and text vertically */
+}
+
+.user-account i {
+    font-size: 24px; /* Adjust icon size */
+    margin-right: 10px; /* Space between icon and text */
+}
+
+.account-info {
+    display: flex;
+    flex-direction: column; /* Stack name and email vertically */
+    align-items: flex-start;
+}
+
+.account-info .user-name {
+    font-weight: bold; /* Bold name */
+}
+
+.account-info .user-email {
+    font-size: 14px; /* Smaller font size for email */
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding-top: 50px; /* Height of the top-bar */
+}
+
+.msg_card_body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 15px;
+    max-width: 100%; /* Ensure content does not overflow horizontally */
+    background-image: url('../images/bg-footer.png');
+    background-size: cover; /* Adjust the background image to cover the entire page */
+    background-repeat: repeat-y; /* Prevent repeating of background image */
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    background-color: white; /* Card background color */
+}
+
+.message-box {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border-top: 1px solid #ddd;
+    position: relative; /* To position elements within */
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative; /* For positioning icons */
+}
+
+.input-group label,
+.calendar-container {
+    display: flex;
+    align-items: center;
+    margin-right: 15px; /* Space between the icons */
+}
+
+.input-group label {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-group label i {
+    font-size: 18px; /* Adjust size as needed */
+}
+
+.calendar-container {
+    display: flex;
+    align-items: center;
+    margin-right: 15px; /* Space between calendar and message input */
+}
+
+.calendar-container i {
+    font-size: 24px; /* Same size as pin icon */
+    cursor: pointer;
+    color: #020202;
+}
+
+.type_msg {
+    background-color: #ffffff;
+    border: none;
+    color: rgb(0, 0, 0);
+    height: 35px;
+    overflow-y: auto;
+    flex: 1;
+    margin-right: 10px;
+    border-radius: 20px;
+    padding: 5px;
+    font-size: 14px;
+    outline: none;
+}
+
+.type_msg:focus {
+    background-color: #ffffff;
+}
+
+.send_btn {
+    background-color: #1c28b3;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.send_btn i {
+    font-size: 18px;
+    color: white;
+}
+
+.loader {
+    border: 4px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid black;
+    width: 30px;
+    height: 30px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    display: none;
+}
+
+.loading {
+    margin: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.msg_cotainer_send {
+    background-color: #1c28b3;
+    color: rgb(255, 255, 255);
+    border-radius: 25px;
+    padding: 10px;
+    position: relative;
+    max-width: 75%;
+    margin-bottom: 10px;
+    align-self: flex-end; /* Aligns sent messages to the right */
+}
+
+.msg_cotainer {
+    background-color: rgb(202, 202, 202);
+    color: black;
+    border-radius: 25px;
+    padding: 10px;
+    position: relative;
+    max-width: 75%;
+    margin-bottom: 10px;
+    align-self: flex-start; /* Aligns received messages to the left */
+}
+
+.msg_time, .msg_time_send {
+    color: rgba(0,0,0,0.5);
+    font-size: 10px;
+    position: absolute;
+    bottom: -15px;
+}
+
+.msg_time_send {
+    right: 10px;
+}   
+
+.msg_time {
+    left: 10px;
+}
+
+.uploaded-file-link {
+    color: white; /* URL color for file */
+}
+
+@media(max-width: 576px) {
+    .contacts_card {
+        margin-bottom: 15px !important;
+    }
+}
+
+.alert-primary {
+    color: #1c28b3;
+    background-color: #fff;
+    border:1px solid #1c28b3;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1c28b3;
+    border-color: #1c28b3;
+    border-radius: 30px;
+}
+
+.alert-primary hr {
+    border-top-color: #1c28b3;
+}
+
+.rtl .msg_cotainer_send {
+    text-align: right;
+}
+
+.rtl .msg_cotainer {
+    text-align: right;
+}
+
+.rtl {
+    direction: rtl;
+}
+
+.rtl .msg_cotainer_send .msg_time_send {
+    left: 0;
+    right: auto;
+}
+
+.rtl .msg_cotainer .msg_time {
+    left: 0;
+    right: auto;
+}
+
+.msg_cotainer_send .uploaded-file {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 10px;
+}
+
+.msg_cotainer_send .uploaded-file-link {
+    margin-top: 10px;
+    display: block;
+}
+
+.input-group-append {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.file-chosen {
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.fas.fa-paperclip {
+    cursor: pointer;
+}
+
+/* Style the recommendation box */
+.recommendation-message {
+    display: none; /* Initially hidden */
+    position: relative;
+    padding: 10px;
+    border-radius: 10px;
+    background: #fff;
+    margin: 5px auto; /* Center horizontally */
+    text-align: center;
+    display: flex; /* Arrange items in a row */
+    gap: 10px; /* Space between items */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+}
+
+.recommendation-message button {
+    display: flex;
+    align-items: center; /* Center align items vertically */
+    justify-content: center; /* Center align items horizontally */
+    margin: 0; /* Remove margins for a row layout */
+    padding: 15px 30px; /* Increase padding for larger buttons */
+    border: none;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 8px;
+    color: #050505; /* Blue color for text and icons */
+    font-size: 16px;
+    padding-left: 50px; /* Larger font size for better readability */
+}
+
+.recommendation-message button:hover {
+    background: #f0f0f0; /* Slightly darker background on hover */
+}
+
+.container {
+    display: flex;
+    position: relative; /* For positioning the main content */
+}
+
+.calendar-sidebar {
+    position: fixed;
+    top: 0;
+    right: -500px; /* Hide initially */
+    width: 500px;
+    height: 100%;
+    background-color: #f9f9f9;
+    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-sidebar.open {
+    right: 0; /* Show sidebar */
+}
+
+.main-content {
+    flex: 1;
+    transition: margin-right 0.3s ease; /* Smooth transition */
+    margin-right: 0; /* No margin initially */
+}
+
+.main-content.with-sidebar {
+    margin-right: 500px; /* Adjust according to sidebar width */
+}
+
+/* Adjust header styles if needed */
+.sidebar-header {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-sidebar-btn {
+    background: transparent;
+    border: none;
+    color: rgb(39, 23, 117);
+    font-size: 24px;
+    cursor: pointer;
+}
+.top-bar {
+    background-color: #5BDB84;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    margin-bottom: 1px;
+    display: flex;
+    justify-content: space-between; /* Space between items */
+    align-items: center;
+}
+
+.headerName {
+    text-align: left;
+    color: #0F0FEC;
+    flex: 1;
+}
+
+.user-account {
+    color: #1c28b3;
+    display: flex;
+    align-items: center;
+}
+
+.user-account i {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.account-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.account-info .user-name {
+    font-weight: bold;
+}
+
+.account-info .user-email {
+    font-size: 14px;
+}
+
+.calendar-sidebar {
+    position: fixed;
+    top: 0;
+    right: -500px; /* Hide initially */
+    width: 500px;
+    height: 100%;
+    background-color: #f9f9f9;
+    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-sidebar.open {
+    right: 0; /* Show sidebar */
+}
+
+.sidebar-header {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-sidebar-btn {
+    background: transparent;
+    border: none;
+    color: rgb(36, 21, 156);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.close-sidebar-btn i {
+    font-size: 24px; /* Size of the close icon */
+}
+
+.calendar-toggle-btn {
+    background: transparent;
+    border: none;
+    color: rgb(70, 21, 175);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.calendar-toggle-btn i {
+    font-size: 24px; /* Size of the calendar icon */
+}
+
+.main-content {
+    flex: 1;
+    transition: margin-right 0.3s ease;
+    margin-right: 0;
+}
+
+.main-content.with-sidebar {
+    margin-right: 500px;
+}
+
+
+        .recommendation-box {
+    display: flex; /* Use flexbox to arrange items in a row */
+  
+     /* Blue border */
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 100%; /* Ensure it fits well in the container */
+    text-align: center;
+    margin: 5px auto; /* Center horizontally */
+    gap: 10px; /* Space between items */
+    justify-content: center; /* Center items horizontally */
+}
+
+.recommendation-box button {
+    display: flex;
+    align-items: center; /* Center align items vertically */
+    justify-content: center; /* Center align items horizontally */
+    margin: 0; /* Remove margins for a row layout */
+    padding: 15px 30px; /* Increase padding for larger buttons */
+    border: none;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 8px;
+    color: #007bff; /* Blue color for text and icons */
+    font-size: 16px; /* Larger font size for better readability */
+    font-weight: 500;
+}
+
+.recommendation-box button:hover {
+    background: #5a70ad;
+}
+
+.recommendation-box i {
+    margin-right: 10px; /* Space between icon and text */
+}
+
+.recommendation-message {
+    display: none; /* Initially hidden */
+    position: relative;
+    padding: 10px;
+    border-radius: 10px;
+    background: #fff;
+    /* Blue border */
+    
+    margin: 5px auto; /* Center horizontally */
+    text-align: center;
+    display: flex; /* Arrange items in a row */
+    gap: 10px; /* Space between items */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+}
+
+.recommendation-message button {
+    display: flex;
+    align-items: center; /* Center align items vertically */
+    justify-content: center; /* Center align items horizontally */
+    margin: 0; /* Remove margins for a row layout */
+    padding: 15px 30px; /* Increase padding for larger buttons */
+    border: none;
+    background: #fff;
+    cursor: pointer;
+    border-radius: 8px;
+    color: #1c28b3; /* Blue color for text and icons */
+    font-size: 16px; /* Larger font size for better readability */
+    font-weight: 500;
+    border: 1px solid #1c28b3;;
+}
+
+.recommendation-message button:hover {
+    background: #82a5de;
+   color: #203c69;
+}
+
+.recommendation-message i {
+    margin-right: 10px; /* Space between icon and text */
+}
+
+.calendar-sidebar {
+            position: fixed;
+            top: 0;
+            right: -500px; /* Hide initially */
+            width: 500px; /* Increased width */
+            height: 100%;
+            background-color: #f9f9f9;
+            box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .calendar-sidebar.open {
+            right: 0;
+        }
+
+        .calendar-sidebar .sidebar-header {
+            padding: 15px;
+            background-color: #5BDB84; /* New button color */
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0 0 10px 10px; /* Smooth button shape */
+        }
+
+        .calendar-sidebar iframe {
+            width: 100%;
+            height: calc(100% - 60px); /* Adjust height based on header */
+            border: none;
+        }
+
+        .calendar-sidebar button {
+            background-color: #5BDB84; /* New button color */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 15px;
+            cursor: pointer;
+            border-radius: 10px; /* Smooth button shape */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .calendar-sidebar button:hover {
+            background-color: #5BDB84; /* Darker shade for hover */
+            transform: scale(1.05);
+        }
+
+        /* Styles for buttons on the page */
+        #open-sidebar, #some-calendar-button {
+            background-color: #5BDB84; /* New button color */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px; /* Smooth button shape */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #open-sidebar:hover, #some-calendar-button:hover {
+            background-color: #5BDB84; /* Darker shade for hover */
+            transform: scale(1.05);
+        }
+
+        /* Additional styles for enhancing calendar visibility */
+        .calendar-sidebar iframe {
+            /* Adjust iframe height for better visibility */
+            height: calc(100% - 60px);
+        }
+        
+        .calendar-sidebar .sidebar-header {
+            font-size: 20px; /* Larger header text */
+        }
+
+        /* Calendar cell styles */
+        .calendar-cell {
+            padding: 20px; /* Make cells larger */
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+
+        .calendar-cell:hover {
+            background-color: #f0f0f0;
+        }
+
+
+        /* INTERACTIVE -------*/
+        
+    /* Default styles */
+.headerName {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo {
+    width: 60px; /* Default width, adjust as needed */
+    height: auto;
+    margin-right: 10px;
+}
+
+#header-title {
+    font-size: 1.5rem; /* Default font size */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .header-logo {
+        width: 50px; /* Adjust width for medium screens */
+    }
+
+    #header-title {
+        font-size: 1.2rem; /* Adjust font size for medium screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .header-logo {
+        width: 40px; /* Adjust width for small screens */
+    }
+
+    #header-title {
+        font-size: 1rem; /* Adjust font size for small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .header-logo {
+        width: 40px; /* Adjust width for small screens */
+    }
+
+    #header-title {
+        font-size: 1rem; /* Adjust font size for small screens */
+    }
+}
+
+    #header-title {
+        font-size: 1rem; /* Adjust font size for small screens */
+    }
+
+    @media (max-width: 480px) {
+        .calendar-sidebar {
+            width: 200px; /* Adjust width for small screens */
+        }
+    
+        .sidebar-header {
+            font-size: 0.9rem; /* Adjust font size for small screens */
+        }
+    
+        .account-info{
+            font-size: 0.9rem;
+
+        }
+        .close-sidebar-btn {
+            font-size: 1rem; /* Adjust font size for close icon on small screens */
+        }
+    }
+    @media (max-width: 480px) {
+        .user-account {
+            font-size: 0.8rem; /* Adjust font size for small screens */
+            padding: 5px;
+        }
+    
+        .user-account i {
+            font-size: 1.2rem; /* Adjust icon size for small screens */
+        }
+    
+        .account-info {
+            flex-direction: column; /* Stack info vertically on small screens */
+        }
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        position: relative;
+    }
+    
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
+    h1 {
+        margin-top: 0;
+        font-size: 24px;
+        text-align: center;
+    }
+    
+    .input-group {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .input-wrapper {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+    }
+    
+    .input-wrapper i {
+        margin-right: 10px;
+        color: #888;
+    }
+    
+    .input-wrapper input {
+        border: none;
+        outline: none;
+        width: 100%;
+        background: none;
+    }
+    
+
+    
+    .member-icon-btn {
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+        /*background-color: #fefeff;  */
+        color: #1c28b3;
+        border: none;
+        border-radius: 50%; 
+        text-align: center;
+        line-height: 30px;
+        cursor: pointer;
+        transition: width 0.3s, height 0.3s, font-size 0.3s;
+    }
+    
+    @media screen and (max-width: 600px) {
+        .modal-content {
+            width: 90%;
+            margin: 30% auto;
+        }
+    
+        .input-wrapper {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    
+        .input-wrapper i {
+            margin-bottom: 5px;
+        }
+    
+        .member-icon-btn {
+            width: 25px;
+            height: 25px;
+            font-size: 25px;
+            line-height: 25px;
+        }
+    }
+    .suggestions-box {
+        position: absolute;
+        top: -200px; /* Adjust based on your layout */
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        z-index: 1000;
+        max-height: 200px; /* Adjust based on your layout */
+        overflow-y: auto;
+        padding: 5px;
+        width: 50%;
+    }
+    
+    .suggestion-item {
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background 0.3s ease;
+    }
+    
+    .suggestion-item:hover {
+        background: #d7d4d4;
+    }
+    
+    .suggestion-item.selected {
+        background: #e0e0e0;
+    }
+    
+    input[type="text"].form-control {
+        border-radius: 4px;
+        padding: 10px;
+    }
+    
+
+
+
+
+
+
+    #userMenu {
+        display: none;
+        position: absolute;
+        top: 50px; /* Adjust as needed */
+        right: 20px; /* Adjust as needed */
+        border: 1px solid #ccc;
+        background-color: #743e3e;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        list-style-type: none;
+        z-index: 1000; /* Ensure menu is on top */
+        max-height: 200px; /* Adjust as needed */
+        overflow-y: auto;
+    }
+    #userMenu li {
+        padding: 8px;
+        cursor: pointer;
+        color: #fff;
+    }
+    #userMenu li:hover {
+        background-color: #f0f0f0;
+        color: #000;
+    }
+    .message-box {
+        position: relative; /* Ensure suggestions and user menu are positioned relative to the message box */
+    }
+    #userMenu {
+        display: none;
+        position: absolute;
+        bottom: 60px; /* Adjust as needed to position above the input box */
+        left: 0;
+        right: 0;
+        border: 1px solid #ccc;
+        background-color: #976a6a;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        list-style-type: none;
+        z-index: 1000; /* Ensure menu is on top */
+        max-height: 200px; /* Adjust as needed */
+        overflow-y: auto;
+    }
+    #userMenu li {
+        padding: 8px;
+        cursor: pointer;
+        color: #fff;
+    }
+    #userMenu li:hover {
+        background-color: #f0f0f0;
+        color: #000;
+    }
+    .message-box {
+        position: relative;
+    }
+
+    #suggestions {
+        display: none;
+        border: 1px solid #ccc;
+        max-width: 200px;
+      }
+      #suggestions li {
+        list-style: none;
+        padding: 5px;
+        cursor: pointer;
+      }
+      #suggestions li:hover {
+        background-color: #f0f0f0;
+      }
+
+
+
+
+
+
+
+
+
+
+
+      /* Style for user menu */
+#userMenu {
+position: absolute; /* Ensure it can be positioned relative to its container */
+background: white;
+border: 1px solid #ddd;
+max-width: 200px;
+display: none; /* Initially hidden */
+}
+
+/* Ensure text is aligned correctly based on direction */
+#userMenu li {
+padding: 8px;
+list-style: none;
+}
+
+#userMenu li:hover {
+background-color: #f0f0f0;
+}
+
+.suggestion-item {
+padding: 8px;
+cursor: pointer;
+}
+.suggestion-item:hover {
+background-color: #ddd;
+}
+#suggestions {
+border: 1px solid #ccc;
+max-height: 150px;
+overflow-y: auto;
+display: none;
+position: absolute;
+background-color: #fff;
+z-index: 1000;
+}
+.message-box {
+position: relative;
+}
+.suggestion-preview {
+font-size: 16px; /* Match the font size of the input */
+padding: 2px;
+white-space: nowrap; /* Ensure the preview text doesn't wrap */
+}
+
+.input-container {
+position: relative;
+}
+
+#text {
+min-height: 30px; /* Adjust as needed */
+padding: 5px;
+border: 1px solid #ccc;
+border-radius: 4px;
+overflow: hidden;
+white-space: pre-wrap;
+direction: ltr; /* Default, will be overridden by JavaScript */
+}
+
+.suggestion-preview {
+position: absolute;
+top: 0;
+left: 0;
+color: gray;
+pointer-events: none;
+font-size: 16px; /* Match input field font size */
+white-space: pre-wrap; /* Allow for multi-line suggestions if needed */
+z-index: 1000;
+}
+.input-container {
+position: relative;
+}
+
+#text {
+min-height: 30px; /* Adjust as needed */
+padding: 5px;
+border: 1px solid #ccc;
+border-radius: 4px;
+overflow: hidden;
+white-space: pre-wrap;
+direction: ltr; /* Default, will be overridden by JavaScript */
+}
+
+.suggestion-preview {
+position: absolute;
+top: 0;
+left: 0;
+color: gray;
+pointer-events: none;
+font-size: 16px; /* Match input field font size */
+white-space: pre-wrap; /* Allow for multi-line suggestions if needed */
+z-index: 1000;
+}
+
+
+/* hhh*/
+.channels-box {
+display: none;
+position: absolute;
+background: #fff;
+border: 1px solid #ddd;
+border-radius: 4px;
+max-height: 100px; /* Adjusted height */
+overflow-y: auto;
+z-index: 1000;
+width: 200px; /* Adjusted width */
+font-size: 12px; /* Adjusted font size */
+top: -130%; /* Lifted the box up */
+left: 0;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added shadow for better visibility */
+}
+.channels-box ul {
+list-style-type: none;
+padding: 0;
+margin: 0;
+}
+.channels-box li {
+padding: 6px;
+border: 1px solid #ddd;
+margin-bottom: 3px;
+border-radius: 4px;
+cursor: pointer;
+}
+
+/* from pervious*/
+.message-area {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    color: #333;
+}
+.message-area.success {
+    border-color: #4CAF50;
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+.message-area.error {
+    border-color: #f44336;
+    background-color: #f8d7da;
+    color: #721c24;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.message-area {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.message-area.success {
+    color: #3c763d;
+}
+.message-area.error {
+    color: #721c24;
+}
+    .container {
+        width: 80%; /* Default width for larger screens */
+        max-width: 600px; /* Maximum width for larger screens */
+        margin: 0 auto; /* Center the container horizontally */
+        padding: 20px; /* Padding inside the container */
+        box-sizing: border-box; /* Ensure padding and border are included in the width */
+    }
+
+    @media (max-width: 768px) {
+        .headerName img {
+            width: 10%; /* Make logo larger on smaller screens */
+        }
+        
+    
+        .calendar-sidebar {
+            width: 250px; /* Reduce sidebar width */
+        }
+    
+        .calendar-toggle-btn {
+            font-size: 1rem; /* Adjust button size */
+        }
+    
+        .modal {
+            width: 100%; /* Make modal width responsive */
+            padding-left: 20px; /* Adjust padding */
+        }
+    
+        .modal-content {
+            padding: 15px; /* Adjust padding inside modal */
+        }
+    
+        .btn {
+            font-size: 0.6rem; /* Adjust button text size */
+            padding: 8px; /* Adjust button padding */
+        }
+    
+        .input-group {
+            margin-bottom: 1rem; /* Adjust input group margin */
+        }
+        
+        .account-info{
+            font-size: x-small ;   
+        }
+        #header-title{
+            font-size: small ;    
+        }
+        .text{
+            width: 100%;
+        }
+        
+        .calendar-container i{
+            font-size: 30px
+        }
+        .fa-paperclip i{
+            font-size: 100%; 
+        }
+
+        .input-group>.custom-file, .input-group>.custom-select, .input-group>.form-control {
+           
+            width: 48%;
+        }
+
+        .send_btn{
+            width: 12%;
+            height: 12%;
+        }
+        .send_btn i {
+            font-size: 10px;
+        
+        }
+        .file-chosen{
+            font-size: x-small;
+        }
+
+
+        .calendar-container i{
+            font-size: 100%;
+        }
+        .fa-paperclip i{
+            font-size: 90%; 
+        }
+        .input-group>.custom-file, .input-group>.custom-select, .input-group>.form-control {
+           
+            width: 48%;
+        }
+
+        .send_btn{
+            width: 12%;
+            height: 12%;
+        }
+        .send_btn i {
+            font-size: 10px;
+        }
+        
+        .file-chosen{
+            font-size: x-small;
+        }
+        .calendar-toggle-btn i{
+          
+            font-size: 18px;
+       }
+       .member-icon-btn {
+        font-size:18px;
+       }
+    }
+    
+    
+
+    
+        @media (max-width: 480px) {
+            .header-logo {
+                width: 10%; /* Make logo larger on very small screens */
+            }
+        
+        
+        .account-info{
+            font-size: x-small ;   
+        }
+        #header-title{
+            font-size: small ;    
+        }
+        
+            .calendar-sidebar {
+                width: 200px; /* Further reduce sidebar width */
+            }
+        
+            .calendar-toggle-btn {
+                font-size: 0.8rem; /* Adjust button size further */
+            }
+        
+            .modal {
+                width: 95%; /* Further adjust modal width */
+                padding-left: 10px; /* Further adjust padding */
+            }
+        
+            .modal-content {
+                padding: 10px; /* Further adjust padding inside modal */
+            }
+        
+           
+        
+            .input-group {
+                margin-bottom: 0.6rem; /* Further adjust input group margin */
+            }
+        
+            .user-account {
+                font-size: 0.4rem; /* Further adjust font size */
+            }
+            .member-icon-btn{
+                width: 100%;
+            }
+            .text{
+                width: 100%;
+            }
+            .calendar-container i{
+            font-size: 100%;
+        }
+        .fa-paperclip i{
+            font-size: 90%; 
+        }
+        .input-group>.custom-file, .input-group>.custom-select, .input-group>.form-control {
+           
+            width: 48%;
+        }
+
+        .send_btn{
+            width: 12%;
+            height: 12%;
+        }
+        .send_btn i {
+            font-size: 10px;
+        
+        }
+        .file-chosen{
+            font-size: x-small;
+        }
+        .input-group label{
+            width: 5%;
+
+        }
+        .input-group label i {
+            font-size: 13px;
+        }
+
+        .fas  .fa-user-plus .user-icon i{
+            font-size: 10px;
+         width: 10%;
+          
+        }
+        .calendar-toggle-btn i{
+          
+             font-size: 18px;
+        }
+
+        .member-icon-btn {
+            font-size:18px;
+           background-color:#5BDB84;
+           }
+        
+       
+    }
+
+
+    @media (max-width: 350px) {
+        .header-logo {
+            width: 10%; /* Make logo larger on very small screens */
+        }
+    
+    
+    .account-info{
+        font-size: x-small ;   
+    }
+    #header-title{
+        font-size: small ;    
+    }
+    
+        .calendar-sidebar {
+            width: 200px; /* Further reduce sidebar width */
+        }
+    
+        .calendar-toggle-btn {
+            font-size: 0.8rem; /* Adjust button size further */
+        }
+    
+        .modal {
+            width: 95%; /* Further adjust modal width */
+            padding-left: 10px; /* Further adjust padding */
+        }
+    
+        .modal-content {
+            padding: 10px; /* Further adjust padding inside modal */
+        }
+    
+       
+        .input-group {
+            margin-bottom: 0.6rem; /* Further adjust input group margin */
+        }
+    
+        .user-account {
+            font-size: 0.4rem; /* Further adjust font size */
+        }
+        .member-icon-btn{
+            width: 90%;
+        }
+        .text{
+            width: 100%;
+        }
+        .calendar-container i{
+        font-size: 100%;
+    }
+    .fa-paperclip i{
+        font-size: 90%; 
+    }
+    .input-group>.custom-file, .input-group>.custom-select, .input-group>.form-control {
+       
+        width: 40%;
+    }
+
+    .send_btn{
+        width: 12%;
+        height: 12%;
+    }
+    .send_btn i {
+        font-size: 10px;
+    
+    }
+    .file-chosen{
+        font-size: x-small;
+    }
+    .input-group label{
+        width: 5%;
+
+    }
+    .input-group label i {
+        font-size: 13px;
+    }
+
+    .fas  .fa-user-plus .user-icon i{
+        font-size: 10px;
+     width: 10%;
+      
+    }
+    .calendar-toggle-btn i{
+      
+         font-size: 18px;
+    }
+    .member-icon-btn {
+        font-size:18px;
+       }
+    
+   
+}
+.top-bar {
+    background-color: #5BDB84;
+    color: white;
+    padding: 1px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between; /* Space between items */
+    align-items: center;
+}
