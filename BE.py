@@ -172,6 +172,17 @@ ATTAR_CONTEXT = """
 - دعم فني: http://attarse.com/help/?lang=ar
 - أسئلة متكررة: https://www.attarse.com/faqs/
 
+=== التصعيد لموظف بشري ===
+ابدأ ردك بالرمز [ESCALATE] في أي من الحالات التالية:
+- لا تعرف إجابة السؤال المتعلق بعطار أو لا تجد المعلومة في ما لديك
+- المستخدم يكرر نفس المشكلة أو السؤال أكثر من مرة دون حل
+- المشكلة معقدة وتتطلب تدخلاً مباشراً (فقدان بيانات، أعطال في الإنتاج، مشاكل مالية)
+- المستخدم يبدو محبطاً أو غير راضٍ عن الردود
+- المستخدم طلب صراحةً التحدث مع شخص حقيقي أو موظف
+- الخطوات المقترحة لم تُحل المشكلة
+
+عند كتابة [ESCALATE]، اكتبه في بداية الرد مباشرة ثم اكمل ردك بشكل طبيعي، واقترح التواصل عبر زر (تحدث مع موظف) أو الاتصال على 0507363550 من 8 صباحاً حتى 9 مساءً.
+
 === قواعد صياغة الردود ===
 - اكتب ردوداً طبيعية كأنك تتحدث مع شخص، بدون أي تنسيق.
 - ممنوع تماماً استخدام ** أو ## أو ### أو --- أو _ أو أي رموز Markdown.
@@ -210,14 +221,17 @@ def get_attar_response(user_message: str, history: list = None) -> str:
             system=ATTAR_CONTEXT,
             messages=messages
         )
-        return response.content[0].text.strip()
+        raw = response.content[0].text.strip()
+        escalate = raw.startswith("[ESCALATE]")
+        text = raw.removeprefix("[ESCALATE]").strip()
+        return text, escalate
 
     except anthropic.AuthenticationError:
         logger.error("Invalid API key")
-        return "خطأ في مفتاح API. يرجى التحقق من الإعدادات. / Invalid API key."
+        return "خطأ في مفتاح API. يرجى التحقق من الإعدادات. / Invalid API key.", False
     except anthropic.RateLimitError:
         logger.error("Rate limit hit")
-        return "الخدمة مشغولة حالياً، يرجى المحاولة بعد لحظات. / Service busy, please try again shortly."
+        return "الخدمة مشغولة حالياً، يرجى المحاولة بعد لحظات. / Service busy, please try again shortly.", False
     except Exception as e:
         logger.error(f"Anthropic error: {e}")
-        return "عذراً، حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى. / Sorry, a connection error occurred. Please try again."
+        return "عذراً، حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى. / Sorry, a connection error occurred. Please try again.", False
