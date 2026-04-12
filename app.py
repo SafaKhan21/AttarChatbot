@@ -33,7 +33,7 @@ def chat():
     history = session.get('history', [])
 
     try:
-        response_text = get_attar_response(message, history)
+        response_text, escalate = get_attar_response(message, history)
         logger.info(f"User: {message[:80]} | Bot: {response_text[:80]}")
 
         # Append this turn to history (keep last 10 turns to avoid token overflow)
@@ -41,7 +41,7 @@ def chat():
         history.append({"role": "assistant", "content": response_text})
         session['history'] = history[-20:]  # keep last 20 messages (10 turns)
 
-        return jsonify(response=response_text)
+        return jsonify(response=response_text, escalate=escalate)
 
     except Exception as e:
         import traceback
