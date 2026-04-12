@@ -379,6 +379,151 @@ textarea#msg::placeholder { color: var(--t-soft); }
 }
 .foot a:hover { color: var(--g-mid); }
 .foot-sep { font-size: 10.5px; color: var(--border); }
+
+/* ── Human Agent Button ── */
+.agent-btn {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.9);
+  cursor: pointer;
+  font-family: var(--font);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.agent-btn:hover { background: rgba(255,255,255,0.22); color: #fff; }
+.agent-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+/* ── Escalation nudge card ── */
+.escalate-card {
+  background: linear-gradient(135deg, #fff8ec 0%, #fdf3e0 100%);
+  border: 1px solid #e8c97a;
+  border-radius: 14px;
+  padding: 13px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: rise .25s ease;
+}
+.escalate-card-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.escalate-card-icon {
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: white;
+}
+.escalate-card-icon svg { width: 16px; height: 16px; }
+.escalate-card-title {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #7a5800;
+}
+.escalate-card-sub {
+  font-size: 11.5px;
+  color: #a07020;
+  line-height: 1.5;
+  padding-right: 44px;
+}
+.escalate-card-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 7px;
+  flex-wrap: wrap;
+  padding-right: 44px;
+}
+.escalate-action {
+  font-size: 11.5px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  font-weight: 500;
+  transition: all .15s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.escalate-action.primary { background: var(--gold); color: white; }
+.escalate-action.primary:hover { background: #b08a30; }
+.escalate-action.secondary { background: white; color: #7a5800; border: 1px solid #e8c97a; }
+.escalate-action.secondary:hover { background: #fdf3e0; }
+
+/* ── Modal ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,20,60,0.45);
+  backdrop-filter: blur(3px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal {
+  background: white;
+  border-radius: 22px;
+  padding: 26px 22px 22px;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 20px 60px rgba(10,30,80,0.2);
+  transform: translateY(10px);
+  transition: transform .2s;
+}
+.modal-overlay.open .modal { transform: translateY(0); }
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.modal-title { font-size: 16px; font-weight: 700; color: var(--g-deep); }
+.modal-close {
+  width: 28px; height: 28px;
+  border-radius: 8px; border: none;
+  background: var(--bg); color: var(--t-mid);
+  cursor: pointer; font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+}
+.modal-close:hover { background: var(--border); }
+.modal-sub { font-size: 12.5px; color: var(--t-soft); margin-bottom: 18px; line-height: 1.6; }
+.contact-option {
+  display: flex; align-items: center; gap: 14px;
+  padding: 13px 14px; border-radius: 14px;
+  border: 1.5px solid var(--border);
+  margin-bottom: 10px; text-decoration: none;
+  transition: all .15s; cursor: pointer;
+}
+.contact-option:hover { border-color: var(--g-soft); background: var(--bg); }
+.contact-option-icon {
+  width: 40px; height: 40px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 19px;
+}
+.contact-option-label { font-size: 13px; font-weight: 600; color: var(--g-deep); margin-bottom: 2px; }
+.contact-option-value { font-size: 11.5px; color: var(--t-soft); }
+.contact-option-arrow { color: var(--border); font-size: 14px; margin-right: auto; }
+.modal-hours { text-align: center; font-size: 11px; color: var(--t-soft); margin-top: 14px; }
 </style>
 </head>
 <body>
@@ -398,6 +543,14 @@ textarea#msg::placeholder { color: var(--t-soft); }
           <div class="online-dot"></div>
           <span class="online-txt">متصل</span>
         </div>
+        <button class="agent-btn" onclick="openAgentModal()" title="تحدث مع موظف">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          موظف
+        </button>
         <button class="reset-btn" onclick="resetChat()" title="بدء محادثة جديدة">↺ جديد</button>
       </div>
     </div>
@@ -423,12 +576,13 @@ textarea#msg::placeholder { color: var(--t-soft); }
     </div>
   </div>
 
-  <!-- Suggestion strip (shown after first message) -->
+  <!-- Suggestions strip (shown after first message) -->
   <div class="suggestions" id="sugs" style="display:none">
     <button class="sug" onclick="ask('كيف أتواصل مع الدعم الفني؟')">دعم فني</button>
     <button class="sug" onclick="ask('ما هو نظام POS؟')">نظام POS</button>
     <button class="sug" onclick="ask('هل يعمل النظام مع أوراكل؟')">أوراكل</button>
     <button class="sug" onclick="ask('أعمالكم السابقة')">أعمال سابقة</button>
+    <button class="sug" onclick="openAgentModal()">👤 تحدث مع موظف</button>
   </div>
 
   <!-- Input -->
@@ -460,6 +614,52 @@ textarea#msg::placeholder { color: var(--t-soft); }
 
 </div>
 
+<!-- Human Agent Modal -->
+<div class="modal-overlay" id="agentModal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title">تواصل مع موظف</div>
+      <button class="modal-close" onclick="closeAgentModal()">✕</button>
+    </div>
+    <div class="modal-sub">
+      فريقنا جاهز لمساعدتك مباشرة. اختر طريقة التواصل المناسبة لك.
+    </div>
+    <a class="contact-option" href="tel:0507363550">
+      <div class="contact-option-icon" style="background:#e8f5e8;">📞</div>
+      <div>
+        <div class="contact-option-label">اتصل بنا مباشرة</div>
+        <div class="contact-option-value">0507363550</div>
+      </div>
+      <div class="contact-option-arrow">←</div>
+    </a>
+    <a class="contact-option" href="mailto:info@attarse.com">
+      <div class="contact-option-icon" style="background:#e8eef8;">✉️</div>
+      <div>
+        <div class="contact-option-label">راسلنا بالبريد</div>
+        <div class="contact-option-value">info@attarse.com</div>
+      </div>
+      <div class="contact-option-arrow">←</div>
+    </a>
+    <a class="contact-option" href="http://attarse.com/help/?lang=ar" target="_blank">
+      <div class="contact-option-icon" style="background:#fff3e0;">🛠️</div>
+      <div>
+        <div class="contact-option-label">بوابة الدعم الفني</div>
+        <div class="contact-option-value">attarse.com/help</div>
+      </div>
+      <div class="contact-option-arrow">←</div>
+    </a>
+    <a class="contact-option" href="https://www.attarse.com/contact" target="_blank">
+      <div class="contact-option-icon" style="background:#f3e8f8;">💬</div>
+      <div>
+        <div class="contact-option-label">طلب استشارة أو عرض سعر</div>
+        <div class="contact-option-value">attarse.com/contact</div>
+      </div>
+      <div class="contact-option-arrow">←</div>
+    </a>
+    <div class="modal-hours">🕐 أوقات العمل: السبت – الخميس، من 8 صباحاً حتى 9 مساءً</div>
+  </div>
+</div>
+
 <script>
 const LOGO_SRC = "/static/logo.png";  
 const msgsEl   = document.getElementById('msgs');
@@ -468,6 +668,8 @@ const sendBtn  = document.getElementById('sendbtn');
 const sugsEl   = document.getElementById('sugs');
 let busy = false;
 let firstMsg = true;
+let botTurnCount = 0;
+let nudgeShown = false;
 
 function ts() {
   return new Date().toLocaleTimeString('ar-SA', {hour:'2-digit', minute:'2-digit'});
@@ -480,6 +682,44 @@ function grow(el) {
 
 function handleKey(e) {
   if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
+}
+
+/* ── Modal ── */
+function openAgentModal() {
+  document.getElementById('agentModal').classList.add('open');
+}
+function closeAgentModal() {
+  document.getElementById('agentModal').classList.remove('open');
+}
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('agentModal')) closeAgentModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAgentModal(); });
+
+/* ── Escalation nudge card ── */
+function showEscalateCard() {
+  if (nudgeShown) return;
+  nudgeShown = true;
+  const card = document.createElement('div');
+  card.className = 'escalate-card';
+  card.innerHTML = `
+    <div class="escalate-card-row">
+      <div class="escalate-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      <div class="escalate-card-title">هل تريد التحدث مع أحد موظفينا؟</div>
+    </div>
+    <div class="escalate-card-sub">فريق الدعم متاح للمساعدة المباشرة من 8 صباحاً حتى 9 مساءً.</div>
+    <div class="escalate-card-actions">
+      <button class="escalate-action primary" onclick="openAgentModal()">👤 تواصل مع موظف</button>
+      <a class="escalate-action secondary" href="tel:0507363550">📞 اتصل الآن</a>
+    </div>`;
+  msgsEl.appendChild(card);
+  msgsEl.scrollTop = msgsEl.scrollHeight;
 }
 
 function addBubble(role, text) {
@@ -563,6 +803,18 @@ async function send() {
     const data = await res.json();
     hideTyping();
     addBubble('bot', data.response || 'لا يوجد رد.');
+
+    botTurnCount++;
+
+    // Show escalation card if bot explicitly flagged it
+    if (data.escalate) {
+      showEscalateCard();
+    }
+    // Auto-nudge after 3 bot turns if not yet shown
+    else if (botTurnCount >= 3 && !nudgeShown) {
+      showEscalateCard();
+    }
+
   } catch (e) {
     hideTyping();
     addBubble('bot', 'فشل الاتصال بالخادم. يرجى التحقق من الإنترنت والمحاولة مرة أخرى.');
@@ -579,6 +831,8 @@ async function resetChat() {
   } catch(_) {}
   msgsEl.innerHTML = '';
   firstMsg = true;
+  botTurnCount = 0;
+  nudgeShown = false;
   sugsEl.style.display = 'none';
   // Re-add welcome card
   msgsEl.innerHTML = `
