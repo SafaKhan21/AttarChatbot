@@ -235,3 +235,4 @@ def get_attar_response(user_message: str, history: list = None) -> str:
     except Exception as e:
         logger.error(f"Anthropic error: {e}")
         return "عذراً، حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى. / Sorry, a connection error occurred. Please try again.", False
+   
